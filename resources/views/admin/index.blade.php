@@ -19,7 +19,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Link</th>
-                    <th scope="col">Date</th>
+                    <th scope="col">Creation date</th>
                     <th scope="col">Actions</th>
                 </tr>
                 </thead>
@@ -34,25 +34,24 @@
                                 {{$link->short_link}}
                             </a>
                         </td>
-                        <td>{{$link->created_at}}</td>
+                        <td>{{$link->getLinkDate()}}</td>
                         <td>
                             <form action="{{route('admin.destroy', ['id' => $link->id])}}"
                                   method="post">
                                 @csrf
                                 @method('delete')
-                                <button type="submit" class="btn btn-danger btn-sm"
+                                <button type="submit" class="btn btn-outline-danger btn-sm"
                                         onclick="return confirm('Are you sure?')">
                                     Delete
                                 </button>
                             </form>
-
                         </td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
         @else
-            <p>No short links yet...</p>
+            <p>No links yet...</p>
         @endif
     </div>
 @endsection

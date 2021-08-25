@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Link;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -19,7 +20,7 @@ class HomeController extends Controller
         $request->validate([
             'original_link' => 'required|url'
         ]);
-        $shortLink = 'short-link.com/' . $faker->safeColorName . $faker->buildingNumber;
+        $shortLink = 'srt.com/' . $faker->safeColorName . $faker->buildingNumber;
 
         $data = [
             'original_link' => $request->original_link,

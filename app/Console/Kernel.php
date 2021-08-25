@@ -21,16 +21,16 @@ class Kernel extends ConsoleKernel
     /**
      * Define the application's command schedule.
      *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     * @param \Illuminate\Console\Scheduling\Schedule $schedule
      * @return void
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
         $schedule->call(function () {
-            Link::where('created_at', '<', Carbon::now()->subDays(3))->delete();
-        })->everyMinute();
-
+            $links = Link::query()
+                ->where('created_at', '<', Carbon::now()->subDays(3))->get();
+            Link::destroy($links);
+        })->everyThreeHours();
     }
 
     /**
@@ -40,7 +40,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }
