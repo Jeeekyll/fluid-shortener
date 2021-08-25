@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,7 @@ use App\Http\Controllers\AdminController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::post('/', [HomeController::class, 'store'])->name('home.store');
+Route::post('/user', [UserController::class, 'store'])->name('user.store');
 
 Route::get('admin', [AdminController::class, 'index'])->name('admin.index');
 Route::delete('admin/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');

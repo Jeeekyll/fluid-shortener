@@ -13,8 +13,6 @@ class Link extends Model
     protected $fillable = [
       'original_link',
       'short_link',
-      'user_ip',
-      'user_agent',
     ];
 
     public function getLinkDate()

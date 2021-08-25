@@ -17,8 +17,6 @@ class CreateLinksTable extends Migration
             $table->id();
             $table->string('original_link');
             $table->string('short_link')->unique();
-            $table->string('user_ip');
-            $table->text('user_agent');
             $table->timestamps();
         });
     }

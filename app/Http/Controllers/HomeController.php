@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Link;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('home.index');
+        $latestLink = Link::query()->latest()->first();
+        return view('home.index', ['latestLink' => $latestLink]);
     }
 
     public function store(Request $request)
