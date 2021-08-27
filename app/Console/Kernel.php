@@ -2,8 +2,7 @@
 
 namespace App\Console;
 
-use App\Models\Link;
-use Carbon\Carbon;
+use App\Console\Commands\DeleteOldRecordsCron;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -15,7 +14,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        DeleteOldRecordsCron::class,
     ];
 
     /**
@@ -26,11 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call(function () {
-            $links = Link::query()
-                ->where('created_at', '<', Carbon::now()->subDays(3))->get();
-            Link::destroy($links);
-        })->everyThreeHours();
+        $schedule->command('delete-records:cron')->everyMinute();
     }
 
     /**

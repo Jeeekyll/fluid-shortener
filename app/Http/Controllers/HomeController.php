@@ -24,8 +24,6 @@ class HomeController extends Controller
 
         $data = [
             'original_link' => $request->original_link,
-            'user_ip' => $request->ip(),
-            'user_agent' => $request->userAgent(),
             'short_link' => $shortLink,
         ];
 
