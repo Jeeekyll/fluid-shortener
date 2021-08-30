@@ -30,7 +30,7 @@
                             {{$loop->index + 1}}
                         </th>
                         <td>
-                            <a href="{{$link->original_link}}" target="_blank">
+                            <a href="/redirect/{{$link->short_link}}" target="_blank">
                                 {{$link->short_link}}
                             </a>
                         </td>

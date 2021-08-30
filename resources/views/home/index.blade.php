@@ -33,21 +33,25 @@
                 <p class="text-success lead">{{session('success')}}</p>
             </div>
         @endif
+        @if(session()->has('error'))
+            <div class="text-center">
+                <p class="text-danger lead">{{session('error')}}</p>
+            </div>
+        @endif
     </div>
 
 
     <div class="row">
         @if(isset($latestLink))
             <div class="col-12 text-center lead">
-                <form action="{{route('user.store')}}" method="post">
-                    @csrf
-                    @method('post')
-                    <button type="submit"
-                            value="{{$latestLink->original_link}}" class="btn btn-link"
-                            name="original_link" id="original_link">
-                        {{$latestLink->short_link}}
-                    </button>
-                </form>
+                {{--                <form action="{{route('user.store')}}" method="post">--}}
+                {{--                    @csrf--}}
+                {{--                    <button type="submit"--}}
+                {{--                            value="{{$latestLink->original_link}}" class="btn btn-link"--}}
+                {{--                            name="original_link" id="original_link">--}}
+                {{--                        {{$latestLink->short_link}}--}}
+                {{--                    </button>--}}
+                {{--                </form>--}}
             </div>
         @else
             <p class="col-12 text-center lead">Here will be your new link</>

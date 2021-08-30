@@ -13,6 +13,8 @@ class HomeController extends Controller
         return view('home.index', ['latestLink' => $latestLink]);
     }
 
+
+
     public function store(Request $request)
     {
         $faker = \Faker\Factory::create();
@@ -20,7 +22,7 @@ class HomeController extends Controller
         $request->validate([
             'original_link' => 'required|url'
         ]);
-        $shortLink = 'srt.com/' . $faker->safeColorName . $faker->buildingNumber;
+        $shortLink = $faker->safeColorName . $faker->buildingNumber;
 
         $data = [
             'original_link' => $request->original_link,

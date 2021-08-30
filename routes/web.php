@@ -18,7 +18,7 @@ use App\Http\Controllers\UserController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::post('/', [HomeController::class, 'store'])->name('home.store');
-Route::post('/user', [UserController::class, 'store'])->name('user.store');
 
+Route::get('redirect/{link}', [AdminController::class, 'redirect'])->name('admin.redirect');
 Route::get('admin', [AdminController::class, 'index'])->name('admin.index');
 Route::delete('admin/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
