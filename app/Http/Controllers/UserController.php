@@ -2,11 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Repositories\UserRepositoryInterface;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    protected $repository;
+
+    /**
+     * UserController constructor.
+     * @param $repository
+     */
+    public function __construct(UserRepositoryInterface $repository)
+    {
+        $this->repository = $repository;
+    }
+
     public function store(Request $request)
     {
         $data = [
@@ -14,7 +25,7 @@ class UserController extends Controller
             'user_agent' => $request->userAgent(),
         ];
 
-        User::query()->create($data);
+        $this->repository->createUser($data);
         return redirect($request->original_link);
     }
 }
